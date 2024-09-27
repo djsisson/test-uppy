@@ -8,7 +8,7 @@ import { Dashboard } from "@uppy/react";
 import Tus from "@uppy/tus";
 import { useEffect } from "react";
 
-const supabaseUploadURL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/upload/resumable`;
+const supabaseUploadURL = `${process.env.NEXT_PUBLIC_STORAGE_URL}/upload/resumable`;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const BUCKETNAME = "test";
 
@@ -20,6 +20,7 @@ export const UppyUpload = ({ session }: { session: Session | null }) => {
       apikey: SUPABASE_ANON_KEY,
     },
     uploadDataDuringCreation: true,
+    chunkSize: 6 * 1024 * 1024,
     allowedMetaFields: [
       "bucketName",
       "objectName",
